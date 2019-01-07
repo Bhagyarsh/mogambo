@@ -15,7 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from django.conf.urls import url, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/v1/command/',include(('Platforms.api.urls') ,namespace="command-retrieve")),
+    path('api/Softwares/',include(('SoftwareData.api.urls') ,namespace="software-retrieve")),
+    path('api/softwareslist/',include(('SoftwareData.api.urls') ,namespace="software-list")),
+    path('',include('accounts.api.jwt.urls'))
 ]
+    # url(r'api/command/',include(('Platforms.api.urls') ,namespace="command-retrieve")),
+    # url(r'api/Softwares/',include(('SoftwareData.api.urls') ,namespace="software-retrieve")),
+    # url(r'api/softwareslist/',include(('SoftwareData.api.urls') ,namespace="software-list")),
+if settings.DEBUG:
+    urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -7,6 +7,7 @@ from .utils import unique_slug_generator
 from Platforms.models import  Command
 from django.contrib.auth import get_user_model 
 User = get_user_model()
+
 def upload_location(instance, filename):
     filebase, ext = filename.split('.')
     return "{}/{}/{}.{}".format(instance.name, 'icon', instance.name, ext)

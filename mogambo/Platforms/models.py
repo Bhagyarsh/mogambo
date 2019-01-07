@@ -67,7 +67,6 @@ class ErrorComment(MPTTModel):
 class Command(models.Model):
     OsVersion = models.ForeignKey(OsVersion, on_delete=models.CASCADE)
     PackageManager = models.ForeignKey(PackageManager,on_delete=models.CASCADE)
-
     working = models.BooleanField(blank=True)
     command = models.TextField()
     command2 = models.TextField(blank=True)

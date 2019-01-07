@@ -1,9 +1,9 @@
-from django.conf.urls import url, include
+from django.conf.urls import url, include,re_path
 
 from .views import CommandRetrieveView
-
+app_name = 'Platforms'
 urlpatterns = [
 
-    url(r'^(?P<pk>\d+)/$',CommandRetrieveView.as_view(), name='command-retrieve')
+    re_path(r'^(?P<pk>\d+)/$',CommandRetrieveView.as_view(), name='command-retrieve')
 
 ]
