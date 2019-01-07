@@ -1,14 +1,12 @@
 from django.db import models
 from django.contrib.contenttypes.fields import GenericRelation
-from star_ratings.models import Rating
-
 from mptt.models import MPTTModel, TreeForeignKey
 from django.contrib.auth.models import User
 from django.db.models.signals import pre_save, post_save
 from .utils import unique_slug_generator
 from Platforms.models import  Command
-
-
+from django.contrib.auth import get_user_model 
+User = get_user_model()
 def upload_location(instance, filename):
     filebase, ext = filename.split('.')
     return "{}/{}/{}.{}".format(instance.name, 'icon', instance.name, ext)
@@ -38,7 +36,7 @@ class ScreenShot(models.Model):
 
 class Category(MPTTModel):
     name = models.CharField(max_length=100, blank=False, unique=True)
-    parent = TreeForeignKey('self', null=True, blank=True, related_name='children', db_index=True)
+    parent = TreeForeignKey('self', null=True, blank=True, on_delete=models.CASCADE,related_name='children', db_index=True)
     slug = models.SlugField(blank=True, null=True)
 
     class MPTTMeta:
@@ -57,8 +55,8 @@ class Category(MPTTModel):
 
 class Comment(MPTTModel):
 
-    user = models.ForeignKey(User)
-    Developer = models.ForeignKey('SoftwareData.Developer', blank=True, null=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    Developer = models.ForeignKey('SoftwareData.Developer',on_delete=models.CASCADE, blank=True, null=True)
     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True,
                             blank=True, related_name='children')
     Software = models.ForeignKey('SoftwareData.Software', on_delete=models.CASCADE)
@@ -105,7 +103,7 @@ class platform(models.Model):
 class Software(models.Model):
 
     name = models.CharField(max_length=250)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
     version = models.CharField(max_length=250)
     weburl = models.URLField()
     description = models.TextField()
@@ -121,8 +119,8 @@ class Software(models.Model):
     offical = models.BooleanField(default=False)
     total_downloads = models.IntegerField(default=0, blank=True)
     verified = models.BooleanField(default=False)
-    category = TreeForeignKey('Category', null=True, blank=True, db_index=True)
-    ratings = GenericRelation(Rating, related_query_name='foos')
+    category = TreeForeignKey('Category', on_delete=models.CASCADE,null=True, blank=True, db_index=True)
+    
     whats_new = models.TextField(null=True, blank=True,)
     ScreenShot = models.ManyToManyField("SoftwareData.ScreenShot",blank=True)
     Tag = models.ManyToManyField(Tag, blank=True)

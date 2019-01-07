@@ -1,8 +1,8 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model 
 from mptt.models import MPTTModel, TreeForeignKey
 
-
+User = get_user_model()
 class platform(models.Model):
     platform = models.CharField(max_length=250)
 
@@ -66,7 +66,7 @@ class ErrorComment(MPTTModel):
 
 class Command(models.Model):
     OsVersion = models.ForeignKey(OsVersion, on_delete=models.CASCADE)
-    PackageManager = models.ForeignKey(PackageManager)
+    PackageManager = models.ForeignKey(PackageManager,on_delete=models.CASCADE)
 
     working = models.BooleanField(blank=True)
     command = models.TextField()
