@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{%block content %}
+    <h1>Form </h1>
+    <div class="container">
+        <div class="col-sm-6 col-12">
+            <div class="form-group">
+                <form  method="POST" enctype="multipart/form-data"> {% csrf_token %}
+                    {{form.as_p}}
+                    {% if form.errors %}
+              <ul>
+                {% for error in form.errors %}
+                  <li>{{ error }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+                  <input class="btn btn-primary" type="submit" value="Submit" />
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock%}

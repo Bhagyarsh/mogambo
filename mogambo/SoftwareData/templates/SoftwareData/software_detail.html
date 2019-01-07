@@ -1,0 +1,25 @@
+
+{% extends "base.html" %}
+{% load ratings %}
+{%block content %}
+<h2>Software</h2>
+
+
+ <div class="container">
+     <div class="col-sm-6 sm-12 ">
+       <h3><img class "float-right" src="{{object.icon.url}}" alt=""height="40"
+           width="40" alt ><b>{{obj.name}}</b><br></h3>
+         {% ratings object%}
+         {% for com in Comment %}
+
+         {{com}} <br>
+         {% endfor %}
+       <p><p><b>{{obj.description}}</b><br></p>
+           </p>
+     </div>
+ </div>
+
+
+
+
+{% endblock%}
