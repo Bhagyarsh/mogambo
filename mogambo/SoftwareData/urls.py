@@ -18,7 +18,6 @@ Including another URLconf
 from django.conf.urls import url, include
 
 from SoftwareData.views import SoftwareListView, SoftwareCreateView,  SoftwareDetailView
-
 urlpatterns = [
 
     url(r'^$', SoftwareListView.as_view(), name='list'),

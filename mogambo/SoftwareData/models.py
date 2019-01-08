@@ -121,7 +121,7 @@ class Software(models.Model):
     total_downloads = models.IntegerField(default=0, blank=True)
     verified = models.BooleanField(default=False)
     category = TreeForeignKey('Category', on_delete=models.CASCADE,null=True, blank=True, db_index=True)
-    
+    ratings = models.IntegerField(blank=True,null=True)
     whats_new = models.TextField(null=True, blank=True,)
     ScreenShot = models.ManyToManyField("SoftwareData.ScreenShot",blank=True)
     Tag = models.ManyToManyField(Tag, blank=True)
