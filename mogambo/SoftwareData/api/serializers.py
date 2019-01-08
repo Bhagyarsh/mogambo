@@ -53,7 +53,6 @@ class SoftwareSerializers(serializers.ModelSerializer):
             "Tag",
             "slug",
             "Command",
-
         ]
 
 class SoftwareListSerializers(serializers.ModelSerializer):

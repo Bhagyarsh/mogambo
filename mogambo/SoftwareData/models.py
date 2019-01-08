@@ -128,8 +128,8 @@ class Software(models.Model):
     slug = models.SlugField(null=True, blank=True)
     objects = SoftwareManager()
     Command = models.ManyToManyField(Command,blank=True)
-    class Meta:
-        ordering = ('-ratings__average',)
+    # class Meta:
+    #     ordering = ('-ratings__average',)
 
     def __str__(self):
         return self.name
