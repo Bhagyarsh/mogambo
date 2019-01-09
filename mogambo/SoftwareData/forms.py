@@ -14,5 +14,4 @@ class SoftwareForm(forms.ModelForm):
             'version': forms.TextInput(attrs={'class': 'form-control'}),
             'weburl': forms.URLInput(attrs={'class': 'form-control'}),
             'description': forms.Textarea(attrs={'class': 'form-control'}),
-
         }
