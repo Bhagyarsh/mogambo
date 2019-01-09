@@ -24,7 +24,7 @@ urlpatterns = [
     path('api/v1/command/',include(('Platforms.api.urls') ,namespace="command-retrieve")),
     path('api/v1/Softwares/',include(('SoftwareData.api.urls') ,namespace="software-retrieve")),
     path('api/v1/softwareslist/',include(('SoftwareData.api.urls') ,namespace="software-list")),
-    path('api/v1',include('accounts.api.jwt.urls'))
+    path('api/v1/',include('accounts.api.jwt.urls'))
 ]
     # url(r'api/command/',include(('Platforms.api.urls') ,namespace="command-retrieve")),
     # url(r'api/Softwares/',include(('SoftwareData.api.urls') ,namespace="software-retrieve")),
