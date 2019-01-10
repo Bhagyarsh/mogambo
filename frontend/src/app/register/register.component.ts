@@ -9,9 +9,12 @@ import { AuthService } from '../auth.service';
 export class RegisterComponent implements OnInit {
   registerUserData = {}
  
-  constructor(private _auth: AuthService) {  console.log(this.registerUserData)}
+  constructor(private _auth: AuthService) {  
+    
+  }
 
-  ngOnInit() {console.log(this.registerUserData)
+  ngOnInit() {
+    
   }
   
   registerUser() {
