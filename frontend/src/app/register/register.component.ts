@@ -7,7 +7,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  registerUserData  = {}
+  registerUserData = {}
  
   constructor(private _auth: AuthService) {  console.log(this.registerUserData)}
 

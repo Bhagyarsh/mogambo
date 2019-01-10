@@ -9,10 +9,8 @@ const httpOptions = {
     // "Access-Control-Allow-Origin":"*",
     // "Access-Control-Allow-Methods":"GET, POST",
     //'Authorization': 'my-auth-token'
-  }
-  )
-}
-;
+  })
+};
 
 @Injectable({
   providedIn: 'root'
