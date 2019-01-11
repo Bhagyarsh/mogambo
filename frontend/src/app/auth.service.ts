@@ -53,7 +53,11 @@ export class AuthService {
 
 
   loginUser(user) {
-    return this.http.post<any>(this._loginUrl, user)
+    console.log(user);
+    console.log('HHHHHHHHHH');
+    return this.http.post<any>(this._loginUrl, user,httpOptions).pipe(
+      //catchError(this.handleError('addHero', hero))
+    );
   }
 
   getToken() {

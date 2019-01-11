@@ -24,13 +24,16 @@ class AuthAPIView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self,request,*args,**kwargs):
-
+        print(request.META['HTTP_ACCEPT'])
+        print(request.POST.get('email'))
         # payload = jwt_payload_handler(user)
         # token = jwt_encode_handler(payload)
         if request.user.is_authenticated:
             return Response({'detail':"you are already authenticated" },status = 400)
         else:
             if request.POST:
+                print(request)
+                print(request.POST)
                 email = request.POST.get('email')
                 password =request.POST.get('password')
                 user = authenticate(email=email,password= password)
