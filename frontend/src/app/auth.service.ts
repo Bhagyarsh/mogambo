@@ -55,12 +55,10 @@ export class AuthService {
   loginUser(user) {
     console.log(user);
     console.log('HHHHHHHHHH');
-    return this.http.post<any>(this._loginUrl, user,httpOptions).pipe(
-      //catchError(this.handleError('addHero', hero))
-    );
+    return this.http.post<any>(this._loginUrl, user)
   }
 
-  getToken() {
-    return localStorage.getItem('token')
-  }
+  // getToken() {
+  //   return localStorage.getItem('token')
+  // }
 }

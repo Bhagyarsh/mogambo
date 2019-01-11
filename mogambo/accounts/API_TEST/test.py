@@ -13,7 +13,7 @@ headers = {
     "Content-Type": "application/json",
     # "Authorization": "JWT " + token
 }
-r = requests.post(url = ENDPOINT,data=data)
+r = requests.post(url = ENDPOINT,data=data,headers=headers)
 #print(r.json()['token'])
 print(r)
 print(r.json())
