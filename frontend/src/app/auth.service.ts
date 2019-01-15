@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    // "Access-Control-Allow-Origin":"*",
-    // "Access-Control-Allow-Methods":"GET, POST",
-    //'Authorization': 'my-auth-token'
+    //'Authorization': 'token'
   })
 };
 
@@ -18,9 +18,9 @@ const httpOptions = {
 export class AuthService {
   private _registerUrl = "http://127.0.0.1:8000/api/v1/auth/jwt/register"
   private _loginUrl = "http://127.0.0.1:8000/api/v1/auth/jwt/"
-
   
-  constructor(private http: HttpClient) { }
+  
+  constructor(private http: HttpClient, private _router: Router) {  }
   
   // createAuthorizationHeader(headers: HttpHeaders) {
   //   headers: new HttpHeaders({
@@ -28,37 +28,59 @@ export class AuthService {
   //     //'Authorization': 'my-auth-token'
   //   })
   // }
+  
 
-
-  // registerUser(user) {}
-  //   return this.http.post<any>(this._registerUrl, user, {
-  //     headers: headers
-  //   })
-  // }
-
-  // registerUser(user) {
-  //   let headers: any = new Headers();
-  //   this.createAuthorizationHeader(headers);
-  //   return this.http.post<any>(this._registerUrl, user, {
-  //     headers: headers
-  //   });
-  // }
   registerUser(user): Observable<any> {
-
     return this.http.post<any>(this._registerUrl, user, httpOptions)
       .pipe(
         //catchError(this.handleError('addHero', hero))
       );
   }
 
+  loginUser(user): Observable<any> {
+    return this.http.post<any>(this._loginUrl, JSON.stringify(user), httpOptions)
+      .pipe(
+        map(res => {
+          let result = res.json()
+          if (result && result.token){
+            localStorage.setItem('token', result.token)
+            return true
+          }
+          else return false
+          })
+      )
+  }
 
+  // registerUser(user) {
+  //   return this.http.post<any>(this._registerUrl, user)
+  // }
+
+<<<<<<< HEAD
+  // loginUser(user) {
+  //   return this.http.post<any>(this._loginUrl, user)
+  // }
+
+  logoutUser() {
+    localStorage.removeItem('token')
+    this._router.navigate(['/events'])
+  }
+
+  getToken() {
+    return localStorage.getItem('token')
+  }
+
+  loggedIn() {
+    return !!localStorage.getItem('token')
+  }
+=======
   loginUser(user) {
     console.log(user);
     console.log('HHHHHHHHHH');
     return this.http.post<any>(this._loginUrl, user)
   }
 
-  getToken() {
-    return localStorage.getItem('token')
-  }
+  // getToken() {
+  //   return localStorage.getItem('token')
+  // }
+>>>>>>> 5a94fe9704ffe9ec4a0f3d99d7ce2f084058008e
 }
