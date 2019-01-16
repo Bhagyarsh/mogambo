@@ -15,19 +15,18 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
     let authService = this.injector.get(AuthService)
-<<<<<<< HEAD
-    let tokenizedReq = req.clone(
-      {
-        headers: req.headers.set('Authorization', 'JWT ' + authService.getToken())
-=======
-    let tokenizedReq = req.clone({
-      
-      setHeaders: {
-        'Content-Type': 'application/json',
-        Authorization: `JWT ${authService.getToken()}`
->>>>>>> 5a94fe9704ffe9ec4a0f3d99d7ce2f084058008e
-      }
-    )
-    return next.handle(tokenizedReq)
+    if (authService.getToken()){
+      let tokenizedReq = req.clone(
+        {
+          headers: req.headers.set('Authorization', 'JWT ' + authService.getToken())
+        }
+      )
+      return next.handle(tokenizedReq)
+    }
+    else{
+      let tokenizedReq = req.clone(
+      )
+      return next.handle(tokenizedReq)
+    }
   }
 }

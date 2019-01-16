@@ -51,14 +51,7 @@ export class AuthService {
       )
   }
 
-  // registerUser(user) {
-  //   return this.http.post<any>(this._registerUrl, user)
-  // }
 
-<<<<<<< HEAD
-  // loginUser(user) {
-  //   return this.http.post<any>(this._loginUrl, user)
-  // }
 
   logoutUser() {
     localStorage.removeItem('token')
@@ -72,15 +65,5 @@ export class AuthService {
   loggedIn() {
     return !!localStorage.getItem('token')
   }
-=======
-  loginUser(user) {
-    console.log(user);
-    console.log('HHHHHHHHHH');
-    return this.http.post<any>(this._loginUrl, user)
-  }
 
-  // getToken() {
-  //   return localStorage.getItem('token')
-  // }
->>>>>>> 5a94fe9704ffe9ec4a0f3d99d7ce2f084058008e
 }

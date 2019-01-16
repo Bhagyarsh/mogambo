@@ -10,13 +10,13 @@ data = {
 }
 token = ''
 headers = {
-    "Content-Type": "application/json",
-    # "Authorization": "JWT " + token
+    "Content-Type": "application/json"
 }
-r = requests.post(url = ENDPOINT,data=data,headers=headers)
+r = requests.post(url = ENDPOINT,data=data)
 #print(r.json()['token'])
 print(r)
-print(r.json())
+print(data)
+print(r.content)
 
 # data={
 #     "email": "bhagyarsh20@gmail.com",

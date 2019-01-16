@@ -25,7 +25,7 @@ class AuthAPIView(APIView):
 
     def post(self,request,*args,**kwargs):
         print(request.POST)
-        print(request.META['HTTP_AUTHORIZATION'])
+
         # payload = jwt_payload_handler(user)
         # token = jwt_encode_handler(payload)
         if request.user.is_authenticated:
