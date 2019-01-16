@@ -22,20 +22,16 @@ jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
 class AuthAPIView(APIView):
     authentication_classes = []
     permission_classes = [permissions.AllowAny]
-
+    print("request")
     def post(self,request,*args,**kwargs):
-<<<<<<< HEAD
-        print(request.POST)
-
-=======
-        # print(request.POST)
-        # print(request.META['HTTP_AUTHORIZATION'])
->>>>>>> e1d2fce582f6d5f02af3443e4d63a464892ddf18
         # payload = jwt_payload_handler(user)
         # token = jwt_encode_handler(payload)
+        
         if request.user.is_authenticated:
             return Response({'detail':"you are already authenticated" },status = 400)
         else:
+            print(request.method)
+            print(request.POST)
             if request.POST:
                 print(request)
                 print(request.POST)
@@ -46,7 +42,7 @@ class AuthAPIView(APIView):
                     payload = jwt_payload_handler(user)
                     token = jwt_encode_handler(payload)
                     return Response(jwt_response_payload_handler(token, user=user, request=request))
-            return Response({'detail':"user not found" },status = 401)
+            return Response({'detail':"user not found at all" },status = 401)
 
 class RegisterAPIView(generics.CreateAPIView):
     queryset =  User.objects.all()

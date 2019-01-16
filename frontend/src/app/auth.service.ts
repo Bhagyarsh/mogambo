@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type': 'application/json',
-    'Authorization': 'token'
+    // 'Authorization': 'token',
+    'Accept': 'application/json'
   })
 };
 
@@ -17,7 +18,7 @@ const httpOptions = {
 })
 export class AuthService {
   private _registerUrl = "http://localhost:8000/api/v1/auth/jwt/register"
-  private _loginUrl = "http://localhost:8000/api/v1/auth/jwt"
+  private _loginUrl = "http://127.0.0.1:8000/api/v1/auth/jwt"
   
   
   constructor(private http: HttpClient, private _router: Router) {  }
@@ -52,12 +53,9 @@ export class AuthService {
   // }
 
 
-<<<<<<< HEAD
-=======
   loginUser(user) {
     return this.http.post<any>(this._loginUrl, user, httpOptions)
   }
->>>>>>> e1d2fce582f6d5f02af3443e4d63a464892ddf18
 
   logoutUser() {
     localStorage.removeItem('token')
@@ -71,10 +69,4 @@ export class AuthService {
   loggedIn() {
     return !!localStorage.getItem('token')
   }
-<<<<<<< HEAD
-=======
-  
-  
->>>>>>> e1d2fce582f6d5f02af3443e4d63a464892ddf18
-
 }

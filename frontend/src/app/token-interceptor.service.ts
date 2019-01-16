@@ -14,50 +14,20 @@
 // })
 // export class TokenInterceptorService implements HttpInterceptor {
 
-<<<<<<< HEAD
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
-    let authService = this.injector.get(AuthService)
-    if (authService.getToken()){
-      let tokenizedReq = req.clone(
-        {
-          headers: req.headers.set('Authorization', 'JWT ' + authService.getToken())
-        }
-      )
-      return next.handle(tokenizedReq)
-    }
-    else{
-      let tokenizedReq = req.clone(
-      )
-      return next.handle(tokenizedReq)
-    }
-  }
-}
-=======
-//   constructor(private injector: Injector,
-//               private router: Router) { }
-
-//   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+//   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>{
 //     let authService = this.injector.get(AuthService)
-//     if (req.headers.get('No-Auth') == "True")
-//       return next.handle(req.clone());
-
-//     if (localStorage.getItem('token') != null) {
-//       const clonedreq = req.clone({
-//         headers: req.headers.set("Authorization", "JWT " + localStorage.getItem('token'))
-//       });
-//       return next.handle(clonedreq)
-//         .pipe(tap(
-//           succ => { console.log(succ) },
-//           err => {
-//             if (err.status === 401)
-//               this.router.navigateByUrl('/login');
-//           }
-//         ));
+//     if (authService.getToken()){
+//       let tokenizedReq = req.clone(
+//         {
+//           headers: req.headers.set('Authorization', 'JWT ' + authService.getToken())
+//         }
+//       )
+//       return next.handle(tokenizedReq)
 //     }
-//     else {
-//       this.router.navigateByUrl('/login');
+//     else{
+//       let tokenizedReq = req.clone(
+//       )
+//       return next.handle(tokenizedReq)
 //     }
 //   }
 // }
-  
->>>>>>> e1d2fce582f6d5f02af3443e4d63a464892ddf18

@@ -2,12 +2,13 @@ import requests
 import json
 
 
-ENDPOINT = "http://127.0.0.1:8000/api/v1/auth/jwt/"
+ENDPOINT = "http://127.0.0.1:8000/api/v1/auth/jwt"
 ENDPOINT_REG = "http://127.0.0.1:8000/api/v1/auth/jwt/register"
 data = {
     "email": "a.a@gmail.com",
     "password": "bhagyarsh31"
 }
+print(json.dumps(data))
 token = ''
 headers = {
     "Content-Type": "application/json"
