@@ -24,8 +24,13 @@ class AuthAPIView(APIView):
     permission_classes = [permissions.AllowAny]
 
     def post(self,request,*args,**kwargs):
+<<<<<<< HEAD
         print(request.POST)
 
+=======
+        # print(request.POST)
+        # print(request.META['HTTP_AUTHORIZATION'])
+>>>>>>> e1d2fce582f6d5f02af3443e4d63a464892ddf18
         # payload = jwt_payload_handler(user)
         # token = jwt_encode_handler(payload)
         if request.user.is_authenticated:
