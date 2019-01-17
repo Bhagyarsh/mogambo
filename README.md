@@ -1,5 +1,6 @@
 # mogambo
 ## steps
+'''
 mkdir mogambo
 cd mogambo
 virtualenv -p python3.6 .
@@ -14,3 +15,4 @@ cd frontend/
 npm install angular
 sudo npm install -g bower
 ng serve
+'''
