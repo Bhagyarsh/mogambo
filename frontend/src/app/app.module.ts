@@ -1,19 +1,19 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { LoginComponent } from './login/login.component';
-// import { TokenInterceptorService } from './token-interceptor.service';
-import { EventsComponent } from './events/events.component';
-import { SpecialEventsComponent } from './special-events/special-events.component';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth.guard';
-import { EventService } from './event.service';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+
+import { EventsComponent } from './components/events/events.component';
+import { SpecialEventsComponent } from './components/special-events/special-events.component';
+import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth.guard';
+import { EventService } from './services/event.service';
+import { AppErrorHandler } from './common/validators/app-error-handler';
 
 
 @NgModule({
@@ -30,12 +30,12 @@ import { EventService } from './event.service';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [AuthService, AuthGuard, EventService,
-    
-      // provide: HTTP_INTERCEPTORS,
-      // useClass: TokenInterceptorService,
-      // multi: true
-    ],
+  providers: [
+    AuthService,
+    AuthGuard,
+    EventService,
+    { provide: ErrorHandler, useClass: AppErrorHandler }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

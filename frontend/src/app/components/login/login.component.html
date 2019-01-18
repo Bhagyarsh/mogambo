@@ -1,0 +1,25 @@
+<div class="row pt-5">
+  <div class="col-md-6 mx-auto">
+    <div class="card rounded-0">
+      <div class="card-header">
+        <h3 class="mb-0">Login</h3>
+      </div>
+      <div class="card-body">
+        <form #f="ngForm" (ngSubmit)="loginUser(f)">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" #email="ngModel" class="form-control rounded-0" [(ngModel)]="loginUserData.email" name="email" placeholder="Enter email" required email>
+            <div class="alert alert-danger" *ngIf="email.touched  && !email.valid">Invalid Email or field left blank!</div>
+          </div>
+          <div class="form-group">
+            <label for="password">password</label>
+            <input type="password" #pass="ngModel" class="form-control rounded-0" [(ngModel)]="loginUserData.password" name="password"
+              placeholder="Enter password" required>
+              <div class="alert alert-danger" *ngIf="pass.touched && !pass.valid">Password field cannot be left blank.</div>
+          </div>
+          <button type="submit" class="btn btn-success float-right" [disabled]="!f.form.valid">Login</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

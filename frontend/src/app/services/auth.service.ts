@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
+import { AppError } from '../common/validators/app-error';
+import { NotFoundError } from '../common/validators/not-found-error';
+import { BadInput } from '../common/validators/bad-input';
 
 
 const httpOptions = {
@@ -34,7 +37,7 @@ export class AuthService {
   registerUser(user): Observable<any> {
     return this.http.post<any>(this._registerUrl, user, httpOptions)
       .pipe(
-        //catchError(this.handleError('addHero', hero))
+        catchError(this.handleError)
       );
   }
 
@@ -55,6 +58,9 @@ export class AuthService {
 
   loginUser(user) {
     return this.http.post<any>(this._loginUrl, user, httpOptions)
+      .pipe(
+        catchError(this.handleError)
+      )
   }
 
   logoutUser() {
@@ -68,5 +74,20 @@ export class AuthService {
 
   loggedIn() {
     return !!localStorage.getItem('token')
+  }
+
+  private handleError(error: Response) {
+    if (error.status === 404) {
+      return throwError(new NotFoundError(error))
+    }
+    else if (error.url === "http://localhost:8000/api/v1/auth/jwt/register" && error.status === 400) {
+      return throwError(new BadInput(error).registerError(error))
+    }
+    else if (error.url === "http://127.0.0.1:8000/api/v1/auth/jwt" && error.status === 400 ) {
+      return throwError(new BadInput(error).loginError(error))
+    }
+    else { 
+    return throwError(alert("unexpected error occurred!"))   
+    }
   }
 }
