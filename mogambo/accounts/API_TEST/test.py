@@ -1,7 +1,7 @@
 import requests
 import json
-
-
+BASE = "http://127.0.0.1:8000/"
+ENDPOINT_verify   = "http://127.0.0.1:8000/api/v1/auth/jwt/verify"
 ENDPOINT = "http://127.0.0.1:8000/api/v1/auth/jwt"
 ENDPOINT_REG = "http://127.0.0.1:8000/api/v1/auth/jwt/register"
 data = {
@@ -14,11 +14,15 @@ headers = {
     "Content-Type": "application/json"
 }
 r = requests.post(url = ENDPOINT,data=data)
-#print(r.json()['token'])
+print(r.json()['token'])
 print(r)
 print(data)
-print(r.content)
-
+token = (r.json()['token'])
+data ={
+    "token":token+"123"
+}
+r = requests.post(url = ENDPOINT_verify,data=data)
+print(r.json())
 # data={
 #     "email": "bhagyarsh20@gmail.com",
 #     "firstname": "bhagyarsh",
