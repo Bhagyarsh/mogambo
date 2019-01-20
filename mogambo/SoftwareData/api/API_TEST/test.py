@@ -25,7 +25,6 @@ data = {
     "version": "10",
     "weburl": "https://inkscape.org/",
     "description": "abc",
-    "user":"2",
     "offical": False,
     "total_downloads": 0,
     "verified": False,

@@ -10,12 +10,12 @@ User = get_user_model()
 
 def upload_location(instance, filename):
     filebase, ext = filename.split('.')
-    return "{}/{}/{}.{}".format(instance.name, 'icon', instance.name, ext)
+    return "media/{}/{}/{}.{}".format(instance.name, 'icon', instance.name, ext)
 
 
 def upload_location_ss(instance, filename):
     filebase, ext = filename.split('.')
-    return "{}/{}/{}.{}".format(instance.Software, 'ScreenShot', instance.Software, ext)
+    return "media/{}/{}/{}.{}".format(instance.Software, 'ScreenShot', instance.Software, ext)
 
 
 
