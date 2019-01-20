@@ -1,6 +1,7 @@
-from rest_framework import generics
-from SoftwareData.models import Software
-from .serializers import SoftwareSerializers, SoftwareListSerializers
+from rest_framework import generics ,permissions
+from SoftwareData.models import Software,Tag,Category
+from .serializers import (SoftwareSerializers, CategorySerializers,
+                SoftwareListSerializers,SoftwareRUDSerializers)
 from django.db.models import Q
 
 
@@ -17,7 +18,9 @@ class SoftwareRetrieveView(generics.RetrieveAPIView):
 
 
 class SoftwarelistAPIView(generics.ListAPIView):
-    queryset = Software.objects.all()
+
+    permission_classes = []
+    authentication_classes = []
     serializer_class = SoftwareListSerializers
 
     def get_queryset(self, *arg, **kwargs):
@@ -32,3 +35,32 @@ class SoftwarelistAPIView(generics.ListAPIView):
             return Software.objects.filter(lookup)
 
         return Software.objects.none()
+
+class SoftwareRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Software.objects.all()
+    serializer_class = SoftwareRUDSerializers
+    lookup_field = 'slug'
+    def get_queryset(self, *arg, **kwargs):
+        Software.objects.all()
+
+class SoftwarecreateAPIView(generics.CreateAPIView):
+    # permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # authentication_classes = []
+    queryset = Tag.objects.all()
+    serializer_class = SoftwareRUDSerializers
+
+    def perform_create(self, serializer):
+         serializer.save(user=self.request.user)
+class CategoryRUD(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializers
+    lookup_field = 'slug'
+    def get_queryset(self, *arg, **kwargs):
+        Category.objects.all()
+
+class CategoryRUDCreateView(generics.CreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializers
+    lookup_field = 'slug'
+    def get_queryset(self, *arg, **kwargs):
+        Category.objects.all()        

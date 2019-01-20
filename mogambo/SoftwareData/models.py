@@ -36,22 +36,23 @@ class ScreenShot(models.Model):
 
 
 class Category(MPTTModel):
-    name = models.CharField(max_length=100, blank=False, unique=True)
-    parent = TreeForeignKey('self', null=True, blank=True, on_delete=models.CASCADE,related_name='children', db_index=True)
+    sname = models.CharField(max_length=100, blank=False, unique=True)
+    parent = TreeForeignKey('self', null=True, blank=True, on_delete=models.CASCADE
+            ,related_name='children', db_index=True)
     slug = models.SlugField(blank=True, null=True)
 
     class MPTTMeta:
-        order_insertion_by = ['name']
+        order_insertion_by = ['sname']
 
     class Meta:
         verbose_name_plural = u"Categories"
 
     def __str__(self):
-        return self.name
+        return self.sname
 
     @property
     def title(self):
-        return self.name
+        return self.sname
 
 
 class Comment(MPTTModel):
@@ -120,14 +121,14 @@ class Software(models.Model):
     offical = models.BooleanField(default=False)
     total_downloads = models.IntegerField(default=0, blank=True)
     verified = models.BooleanField(default=False)
-    category = TreeForeignKey('Category', on_delete=models.CASCADE,null=True, blank=True, db_index=True)
+    # category = TreeForeignKey('Category', on_delete=models.CASCADE,null=True, blank=True, db_index=True)
     ratings = models.IntegerField(blank=True,null=True)
     whats_new = models.TextField(null=True, blank=True,)
-    ScreenShot = models.ManyToManyField("SoftwareData.ScreenShot",blank=True)
-    Tag = models.ManyToManyField(Tag, blank=True)
+    
+    Tag = models.ManyToManyField(Tag, blank=True,null=True)
     slug = models.SlugField(null=True, blank=True)
     objects = SoftwareManager()
-    Command = models.ManyToManyField(Command,blank=True)
+    # Command = models.ManyToManyField(Command,blank=True,null=True)
     # class Meta:
     #     ordering = ('-ratings__average',)
 

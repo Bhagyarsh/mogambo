@@ -22,7 +22,7 @@
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input #email="ngModel" [(ngModel)] = "userData.email" name = "email" type="text" class="form-control rounded-0" placeholder="Enter email" required>
+            <input #email="ngModel" [(ngModel)] = "userData.email" name = "email" type="text" class="form-control rounded-0" placeholder="Enter email" required email>
             <div class="alert alert-danger" *ngIf="email.touched  && !email.valid">Invalid Email or field left blank!</div>
           </div>
 
