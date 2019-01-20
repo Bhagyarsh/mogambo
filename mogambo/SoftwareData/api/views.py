@@ -18,7 +18,6 @@ class SoftwareRetrieveView(generics.RetrieveAPIView):
 
 
 class SoftwarelistAPIView(generics.ListAPIView):
-
     permission_classes = []
     authentication_classes = []
     serializer_class = SoftwareListSerializers
@@ -51,16 +50,16 @@ class SoftwarecreateAPIView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
          serializer.save(user=self.request.user)
-class CategoryRUD(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializers
-    lookup_field = 'slug'
-    def get_queryset(self, *arg, **kwargs):
-        Category.objects.all()
+# class CategoryRUD(generics.RetrieveUpdateDestroyAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializers
+#     lookup_field = 'slug'
+#     def get_queryset(self, *arg, **kwargs):
+#         Category.objects.all()
 
-class CategoryRUDCreateView(generics.CreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializers
-    lookup_field = 'slug'
-    def get_queryset(self, *arg, **kwargs):
-        Category.objects.all()        
+# class CategoryRUDCreateView(generics.CreateAPIView):
+#     queryset = Category.objects.all()
+#     serializer_class = CategorySerializers
+#     lookup_field = 'slug'
+#     def get_queryset(self, *arg, **kwargs):
+#         Category.objects.all()        

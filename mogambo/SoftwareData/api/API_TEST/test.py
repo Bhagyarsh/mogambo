@@ -21,7 +21,7 @@ token = (r.json()['token'])
 print(r)
 print(data)
 data = {
-    "name": "inkscape",
+    "name": "ink",
     "version": "10",
     "weburl": "https://inkscape.org/",
     "description": "abc",

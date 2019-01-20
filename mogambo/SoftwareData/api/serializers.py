@@ -28,10 +28,10 @@ class TagSerializers(serializers.ModelSerializer):
             "name"
         ]
 class SoftwareSerializers(serializers.ModelSerializer):
-    Command = CommandSerializers(many=True)
+
     Tag = TagSerializers(many=True)
     category = CategorySerializers()
-    ScreenShot = ScreenShotSerializers(many=True)
+    user = UserPublicSerializer()
     class Meta:
         model = Software
         lookup_field = 'slug'
@@ -49,15 +49,15 @@ class SoftwareSerializers(serializers.ModelSerializer):
             "verified",
             "category",
             "whats_new",
-            "ScreenShot",
+
             "Tag",
             "slug",
-            "Command",
+
         ]
 
 class SoftwareListSerializers(serializers.ModelSerializer):
     Tag = TagSerializers(many=True)
-    category = CategorySerializers(many=True)
+    category = CategorySerializers()
     class Meta:
         model = Software
         lookup_field = 'slug'
@@ -75,11 +75,10 @@ class SoftwareListSerializers(serializers.ModelSerializer):
         ]
 
 class SoftwareRUDSerializers(serializers.ModelSerializer):
-    category = serializers.Field(source='Category.title')
-    Tag =  serializers.PrimaryKeyRelatedField(
-                                                many=True,read_only=True)
-    category =  serializers.SlugRelatedField( 
-                        slug_field='sname',read_only=True)
+    Tag =  serializers.PrimaryKeyRelatedField(queryset = Tag.objects.all(),
+                                                many=True)
+    category =  serializers.SlugRelatedField(queryset = Category.objects.all(),
+                        slug_field='sname')
     # user = serializers.PrimaryKeyRelatedField(queryset = User.objects.get(pk),
     #                                             many=True)
     user = UserPublicSerializer(read_only=True)

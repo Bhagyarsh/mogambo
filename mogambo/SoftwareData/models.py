@@ -121,11 +121,11 @@ class Software(models.Model):
     offical = models.BooleanField(default=False)
     total_downloads = models.IntegerField(default=0, blank=True)
     verified = models.BooleanField(default=False)
-    # category = TreeForeignKey('Category', on_delete=models.CASCADE,null=True, blank=True, db_index=True)
+    category = TreeForeignKey('Category', on_delete=models.CASCADE,null=True, blank=True, db_index=True)
     ratings = models.IntegerField(blank=True,null=True)
     whats_new = models.TextField(null=True, blank=True,)
     
-    Tag = models.ManyToManyField(Tag, blank=True,null=True)
+    Tag = models.ManyToManyField(Tag, blank=True)
     slug = models.SlugField(null=True, blank=True)
     objects = SoftwareManager()
     # Command = models.ManyToManyField(Command,blank=True,null=True)
