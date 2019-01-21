@@ -19,7 +19,13 @@ class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ('email', 'firstname','lastname')
-
+class UserPublicSerializer(serializers.ModelSerializer):
+    
+    class Meta:
+        model = User
+        fields = [
+            'email',
+        ]
 class UserRegisterSerializer(serializers.ModelSerializer):
     expires= serializers.SerializerMethodField(read_only=True)
     token = serializers.SerializerMethodField(read_only=True)
