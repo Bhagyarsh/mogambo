@@ -20,7 +20,7 @@ export class SoftwareListComponent implements OnInit {
       .subscribe(
         res => {
           this.softwareList = res
-         // console.log(res)
+         console.log(res)
         },
         err => {
           if (err instanceof HttpErrorResponse) {
