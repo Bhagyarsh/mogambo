@@ -3,7 +3,7 @@ from SoftwareData.models import Software,Tag,Category
 from .serializers import (SoftwareSerializers, CategorySerializers,
                 SoftwareListSerializers,SoftwareRUDSerializers)
 from django.db.models import Q
-
+from rest_framework.pagination import LimitOffsetPagination,PageNumberPagination
 
 class SoftwareRetrieveView(generics.RetrieveAPIView):
     lookup_field = 'slug'
@@ -18,10 +18,10 @@ class SoftwareRetrieveView(generics.RetrieveAPIView):
 
 
 class SoftwarelistAPIView(generics.ListAPIView):
-    permission_classes = []
-    authentication_classes = []
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
+    # authentication_classes = []
     serializer_class = SoftwareListSerializers
-
+    pagination_class = LimitOffsetPagination
     def get_queryset(self, *arg, **kwargs):
         request = self.request
         query = request.GET.get("q")
@@ -33,7 +33,7 @@ class SoftwarelistAPIView(generics.ListAPIView):
             #      Q(platform__platform__icontains=query))
             return Software.objects.filter(lookup)
 
-        return Software.objects.none()
+        return Software.objects.all()
 
 class SoftwareRUDAPIView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Software.objects.all()
@@ -62,4 +62,4 @@ class SoftwarecreateAPIView(generics.CreateAPIView):
 #     serializer_class = CategorySerializers
 #     lookup_field = 'slug'
 #     def get_queryset(self, *arg, **kwargs):
-#         Category.objects.all()        
+#         Category.objects.all()
