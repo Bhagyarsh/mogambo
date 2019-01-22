@@ -13,10 +13,10 @@ import { BadInput } from '../../common/validators/bad-input';
 export class RegisterComponent implements OnInit {
 
   userData: User = {
-    firstname : 'p',
-    lastname : 'p',
-    email : 'p@p.com',
-    password : 'asnka',
+    firstname : '',
+    lastname : '',
+    email : '',
+    password : '',
   }
 
   constructor(private _auth: AuthService,

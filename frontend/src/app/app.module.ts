@@ -8,12 +8,10 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 
-import { EventsComponent } from './components/events/events.component';
-import { SpecialEventsComponent } from './components/special-events/special-events.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
-import { EventService } from './services/event.service';
 import { AppErrorHandler } from './common/validators/app-error-handler';
+import { SoftwareListComponent } from './components/software-list/software-list.component';
 
 
 @NgModule({
@@ -21,8 +19,7 @@ import { AppErrorHandler } from './common/validators/app-error-handler';
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    EventsComponent,
-    SpecialEventsComponent
+    SoftwareListComponent
   ],
   imports: [
     BrowserModule,
@@ -33,7 +30,6 @@ import { AppErrorHandler } from './common/validators/app-error-handler';
   providers: [
     AuthService,
     AuthGuard,
-    EventService,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
