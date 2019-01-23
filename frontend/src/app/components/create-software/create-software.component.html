@@ -1,3 +1,79 @@
-<p>
-  create-software works!
-</p>
+<div class="container mt-5 mb-5">
+  <form #f="ngForm" (ngSubmit)="addSoftware(f)">
+    <div class="form-group">
+      <label for="name">Name</label>
+      <input type="text" [(ngModel)]="softwareData.name" name="name" class="form-control" id="InputName" placeholder="Enter Name">
+    </div>
+  
+    <div class="form-group">
+      <label for="version">Version</label>
+      <input type="text" [(ngModel)]="softwareData.version" name="version" class="form-control" id="InputVersion" placeholder="Software Version">
+    </div>
+  
+    <div class="form-group">
+      <label for="weburl">Weburl</label>
+      <input type="url" [(ngModel)]="softwareData.weburl" name="weburl" class="form-control" id="InputURL" placeholder="URL">
+    </div>
+  
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea [(ngModel)]="softwareData.description" name="description"  class="form-control" id="TextareaDescription" rows="3"></textarea>
+    </div>
+  
+    <div class="form-group">
+      <label for="icon">Icon</label>
+      <input type="file"  [(ngModel)]="softwareData.icon" name="icon" class="form-control-Icon" id="FormIcon">
+    </div>
+  
+    <div class="form-group">
+      <label for="width_field">Width field</label>
+      <input type="number" [(ngModel)]="softwareData.width_field" name="width_field" class="form-control" id="InputWidthField">
+    </div>
+  
+    <div class="form-group">
+      <label for="height_field">Height field</label>
+      <input type="number" [(ngModel)]="softwareData.height_field" name="height_field" class="form-control" id="InputHeightField">
+    </div>
+  
+    <div class="form-group">
+      <label class="form-check-label" for="offical">Offical</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input class="form-check-input" [(ngModel)]="softwareData.offical" name="offical" type="checkbox" id="OfficalCheck">
+    </div>
+  
+    <div class="form-group">
+      <label for="total_downloads">Total downloads</label>
+      <input type="number" [(ngModel)]="softwareData.total_downloads" name="total_downloads" class="form-control" id="InputTotalDownloads">
+    </div>
+  
+    <div class="form-group">
+      <label class="form-check-label" for="verified">Verified</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <input class="form-check-input" [(ngModel)]="softwareData.verified" name="verified" type="checkbox" id="VerifiedCheck">
+    </div>
+  
+    <div class="form-group">
+      <label for="category">Category</label>
+      <select [(ngModel)]="softwareData.category" name="category" class="form-control">
+        <option>2d</option>
+      </select>
+    </div>
+  
+    <div class="form-group">
+      <label for="ratings">Ratings</label>
+      <input type="number" [(ngModel)]="softwareData.ratings" name="ratings" class="form-control" id="InputRatings">
+    </div>
+  
+    <div class="form-group">
+      <label for="whats_new">Whats new</label>
+      <textarea [(ngModel)]="softwareData.whats_new" name="whats_new" class="form-control" id="TextareaWhatsNew" rows="3"></textarea>
+    </div>
+  
+    <div class="form-group">
+      <label for="Tag">Tag</label>
+      <select [(ngModel)]="softwareData.Tag" name="Tag" class="custom-select" size="3">
+        <option>game</option>
+      </select><br><br>
+    </div>
+  
+    <button type="submit" class="btn btn-primary float-right">Submit</button>
+  </form>
+</div>

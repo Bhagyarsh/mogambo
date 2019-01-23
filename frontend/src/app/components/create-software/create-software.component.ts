@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SoftwareService } from '../../services/software.service';
 
 @Component({
   selector: 'app-create-software',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateSoftwareComponent implements OnInit {
 
-  constructor() { }
+  softwareData = {}
+
+  constructor(private _softwareService: SoftwareService) { }
 
   ngOnInit() {
+  }
+
+  addSoftware() {
+    this._softwareService.create(this.softwareData)
+      .subscribe(
+        res => {
+          console.log(res)
+        },
+        err => console.log(err)
+      )
   }
 
 }
