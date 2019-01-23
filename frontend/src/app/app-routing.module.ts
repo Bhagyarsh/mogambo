@@ -4,6 +4,7 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { SoftwareListComponent } from './components/software-list/software-list.component';
+import { CreateSoftwareComponent } from './components/create-software/create-software.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,9 @@ const routes: Routes = [
   },
   {
     path: 'software-list', canActivate: [AuthGuard], component: SoftwareListComponent
+  },
+  {
+    path: 'create-software', canActivate: [AuthGuard], component: CreateSoftwareComponent
   },
   {
     path: 'login', component: LoginComponent

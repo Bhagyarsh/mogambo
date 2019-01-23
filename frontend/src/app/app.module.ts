@@ -12,6 +12,7 @@ import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AppErrorHandler } from './common/validators/app-error-handler';
 import { SoftwareListComponent } from './components/software-list/software-list.component';
+import { CreateSoftwareComponent } from './components/create-software/create-software.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { SoftwareListComponent } from './components/software-list/software-list.
     AppComponent,
     RegisterComponent,
     LoginComponent,
-    SoftwareListComponent
+    SoftwareListComponent,
+    CreateSoftwareComponent
   ],
   imports: [
     BrowserModule,
