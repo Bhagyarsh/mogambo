@@ -7,7 +7,7 @@ from .views import (SoftwareRetrieveView, SoftwarelistAPIView,
 app_name = 'SoftwarData'
 urlpatterns = [
     re_path(r'detail/(?P<slug>[-\w]+)$', SoftwareRetrieveView.as_view(), name='Software-retrieve'),
-    re_path(r'^(?P<slug>[-\w]+)$', SoftwarelistAPIView.as_view(), name='Software-search'),
+    # re_path(r'^(?P<slug>[-\w]+)$', SoftwarelistAPIView.as_view(), name='Software-search'),
     re_path(r'post/(?P<slug>[-\w]+)$',SoftwareRUDAPIView.as_view(),name='Software-rud'),
     re_path(r'create$',SoftwarecreateAPIView.as_view(),name='Software-create'),
     re_path(r'^$', SoftwarelistAPIView.as_view(), name='Software-list'),
