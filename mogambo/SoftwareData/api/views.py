@@ -4,7 +4,7 @@ from .serializers import (SoftwareSerializers, CategorySerializers,
                 SoftwareListSerializers,SoftwareRUDSerializers)
 from django.db.models import Q
 from rest_framework.pagination import LimitOffsetPagination,PageNumberPagination
-
+from .pagination import  SoftwareListOffsetPagination#b
 class SoftwareRetrieveView(generics.RetrieveAPIView):
     lookup_field = 'slug'
     serializer_class = SoftwareSerializers
@@ -21,10 +21,11 @@ class SoftwarelistAPIView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     # authentication_classes = []
     serializer_class = SoftwareListSerializers
-    pagination_class = LimitOffsetPagination
+    pagination_class = SoftwareListOffsetPagination
     def get_queryset(self, *arg, **kwargs):
         request = self.request
         query = request.GET.get("q")
+        print(query)
         if query is not None:
 
             lookup = (Q(name__icontains=query) |

@@ -19,8 +19,8 @@ export class SoftwareListComponent implements OnInit {
     this._softwareService.getAll()
       .subscribe(
         res => {
-          this.softwareList = res
-         console.log(res)
+          this.softwareList = res.results
+         console.log(res.results)
         },
         err => {
           if (err instanceof HttpErrorResponse) {
