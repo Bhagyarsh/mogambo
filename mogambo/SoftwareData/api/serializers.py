@@ -65,6 +65,7 @@ class SoftwareListSerializers(serializers.ModelSerializer):
             "name",
             "version",
             "weburl",
+            "ratings",
             "description",
             "offical",
             "total_downloads",

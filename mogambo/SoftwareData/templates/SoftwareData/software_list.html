@@ -9,7 +9,7 @@
         {% for obj in object_list %}
 
         <div class="card w-75">
-      <div class="card-body">
+         <div class="card-body">
         <h5 class="card-title"><img src="{{obj.icon.url}}" alt=""height="40"
             width="40" alt >    <a href="{% url 'software:detail' obj.slug %}">{{obj.name}}</a>
             {% if obj.Tag %}
@@ -26,9 +26,7 @@
 
             </small> </small> </h5>
         <p class="card-text">{{obj.description|truncatewords:30}}</p>
-
-
-      </div>
+        </div>
         </div>
 
         {% endfor %}
