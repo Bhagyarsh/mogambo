@@ -16,7 +16,7 @@ export class CreateSoftwareComponent implements OnInit {
   }
 
   addSoftware() {
-    console.log(this.softwareData)
+  //  console.log(this.softwareData)
     this._softwareService.create(this.softwareData)
       .subscribe(
         res => {

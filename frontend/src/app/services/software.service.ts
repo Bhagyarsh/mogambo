@@ -3,9 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http'
 
 
 let _Token = localStorage.getItem('token')
+console.log(_Token)
 const httpOptions = {
   headers: new HttpHeaders({
-   // 'Content-Type': 'application/json',
+    //'Content-Type': 'application/json',
     'Authorization': `JWT ${_Token}`,
     //'Accept': 'application/json'
   })
@@ -16,7 +17,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class SoftwareService {
-    token = localStorage.getItem('token'); 
+   // token = localStorage.getItem('token'); 
   
   private _listUrl = "http://127.0.0.1:8000/api/v1/software/"
   private _createUrl = "http://127.0.0.1:8000/api/v1/software/create"
@@ -34,7 +35,7 @@ getAll() {
 }
 
 create(softwareData) {
-  console.log(softwareData,this.token)
+  console.log(softwareData,httpOptions,_Token)
   return this.http.post<any>(this._createUrl, softwareData, httpOptions)
     .pipe(
       //catchError(this.handleError)
