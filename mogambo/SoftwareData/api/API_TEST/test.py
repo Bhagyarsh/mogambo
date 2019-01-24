@@ -38,10 +38,10 @@ with open(img_path,'rb') as icon:
         "icon":icon,
         "ScreenShot": None
     }
-   
+
     headers = {
         "Authorization" : "JWT "+ token,
-    #    "Content-Type":  "multipart/form-data"
+       # "Content-Type":  "multipart/form-data"
     }
     print(json.dumps(data))
 
